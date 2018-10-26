@@ -1,0 +1,68 @@
+html, body {
+	height: 100%;
+}
+
+body {
+	background-image: url("../images/smokey_background.png");
+	background-repeat: no-repeat;
+    background-position: left top;
+    background-attachment: fixed;
+	font-family: Calibri;
+	color: #F0F0F0;
+}
+
+.vertical-center {
+	min-height: 100%; 
+	display: flex;
+	align-items: center;
+}
+
+#loginContainer {
+	display: inline-block;
+	vertical-align: middle;
+	max-width: 450px;
+	min-width: 200px;
+	max-height: fit-content;
+	background-color: rgba(220.0, 220.0, 220.0, 0.8);
+	padding: 30px;
+	border-radius: 10px;
+}
+
+#loginContainer {
+	color: #0F0F0F;
+}
+
+#buttonBox {
+	margin: 20px 20px 5px;
+}
+
+.red-button {
+	color: #F0F0F0;
+	padding: 10px;
+	border: none;
+	font-size: 20px;
+	background-color: #AA0000;
+	border-radius: 20px;
+}
+
+#membersAccess {
+	margin: 25px auto;
+}
+
+p {
+	align-items: center;
+}
+
+a:link {
+	color: #F0F0F0;
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+a:hover {
+	color: #AA0000;
+}
+
+a:visited {
+	color: #F0F0F0;
+}

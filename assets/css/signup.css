@@ -1,0 +1,47 @@
+body {
+	background-image: url("../images/smokey_background.png");
+	background-repeat: no-repeat;
+    background-position: left top;
+    background-attachment: fixed;
+	font-family: Calibri;
+	color: #F0F0F0;
+}
+
+#registerContainer {
+	margin: 10% auto;
+	color: #0F0F0F;
+	vertical-align: middle;
+	max-width: 600px;
+	min-width: 200px;
+	max-height: fit-content;
+	background-color: rgba(220.0, 220.0, 220.0, 0.8);
+	padding: 30px;
+	border-radius: 10px;
+}
+
+
+#buttonBox {
+	margin: 20px 20px 5px;
+}
+
+.red-button {
+	color: #F0F0F0;
+	padding: 10px;
+	border: none;
+	font-size: 20px;
+	background-color: #AA0000;
+	border-radius: 20px;
+}
+
+a:link {
+	color: #0F0F0F;
+	font-weight: bold;
+}
+
+a:hover {
+	color: #AA0000;
+}
+
+a:visited {
+	color: #0F0F0F;
+}
