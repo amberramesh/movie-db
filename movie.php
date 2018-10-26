@@ -1,11 +1,14 @@
 <?php
-   $userid = '';
+
    $movieid = $_GET['id'];
    define('DB_SERVER', 'localhost');
    define('DB_USERNAME', 'root');
    define('DB_PASSWORD', 'root');
    define('DB_DATABASE', 'moviedb');
    $con = mysqli_connect(DB_SERVER,DB_USERNAME,DB_PASSWORD,DB_DATABASE);
+
+
+
 ?>
 <html>
 <head>
@@ -22,11 +25,13 @@
   <div class="container main-container">
     <?php include 'header.php';?>
     <main>
+
       <h1 style = " display: none;  padding: 30px; font-size: 150px;">UNDER CONSTRUCTION</h1>
       <div class="container content">
         <div class = "row">
           <div class = "col-md-8">
-            <?php
+            <?php echo strtotime('10 July 2015');
+
              $result = mysqli_query($con, "SELECT * FROM movie inner join movie_meta on movie_meta.movie_id = movieid WHERE movieid = $movieid ");
              $row = mysqli_fetch_assoc($result);
              ?>
@@ -93,7 +98,12 @@
       <h4>REVIEWS </h4>
       <div class = "reviews">
         <?php
-         $result = mysqli_query($con, "SELECT * FROM user_feedback WHERE movie_id = $movieid ");
+        $query = "SELECT * FROM user_feedback WHERE movie_id = $movieid ORDER BY ";
+        if(isset($_SESSION['user_id']))
+          $query = $query."user_id = '".$_SESSION['user_id']."' DESC, ";
+        $query = $query."date DESC";
+
+         $result = mysqli_query($con, $query );
          while($row = mysqli_fetch_assoc($result)){
          ?>
         <div class="row">
@@ -110,7 +120,16 @@
           <p>rated this <h3 class = "rating"><?php echo $row['rating']; ?></h3></p>
           <p>
             <?php echo '(',$row['date'],')'; ?>
-          </p>
+
+          <?php if(isset($_SESSION['user_id']) && $row['user_id'] == $_SESSION['user_id'] ){
+            ?>
+            <form class="delete" method="POST" action="review.php">
+              <input type="text" name="movie_id" value="<?php echo $movieid ?>"  hidden>
+              <input type="text" name="user_id" value="<?php echo $_SESSION['user_id'] ?>"  hidden>
+              <input type="submit" name="action" value="Delete"/>
+            </form>
+          <?php } ?>
+        </p>
         </div>
         <div class = "col-md-9">
           <p>
@@ -131,4 +150,5 @@
   </div>
 </body>
 </html>
-<?php mysqli_close($con);?>
+<?php mysqli_close($con);
+      ?>

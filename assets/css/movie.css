@@ -35,5 +35,10 @@ img
 .rating
 {
   display: inline;
-  
+
+}
+
+.delete{
+  margin-left: -30px;
+  margin-top: 5px;
 }

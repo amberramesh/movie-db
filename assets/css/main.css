@@ -24,11 +24,13 @@ h2
 }
 .card{
   text-align: center;
-  margin: 10px 20px 10px 20px;
-  padding: 10px 0 0 0;
-  min-width: 10rem;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  max-width: 250px;
   background-color: rgba(255, 144, 6, 0.1);
+  font-size: 15px;
 }
+
 .card-img-top{
   margin: 0 auto;
   max-width: 200px;

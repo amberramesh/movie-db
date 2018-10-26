@@ -3,3 +3,4 @@
   Copyright &copy 2018
 </div>
 </footer>
+<?php session_destroy(); ?>
