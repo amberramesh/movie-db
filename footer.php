@@ -3,4 +3,5 @@
   Copyright &copy 2018
 </div>
 </footer>
-<?php session_destroy(); ?>
+<?php session_destroy();
+mysqli_close($con); ?>

@@ -27,6 +27,15 @@ img
   width: 70%;
 }
 
+.post-review{
+  min-width: 100%;
+
+}
+textarea
+{
+  min-width: 90%;
+  text-align: left;
+}
 .reviews .col-md-3 p
 {
   margin-bottom: -5px;

@@ -1,13 +1,25 @@
 <?php
-
    $movieid = $_GET['id'];
-   define('DB_SERVER', 'localhost');
-   define('DB_USERNAME', 'root');
-   define('DB_PASSWORD', 'root');
-   define('DB_DATABASE', 'moviedb');
-   $con = mysqli_connect(DB_SERVER,DB_USERNAME,DB_PASSWORD,DB_DATABASE);
 
+   function manage_cookies()
+   {
+     global $movieid;
+     if(!isset($_COOKIE["VIEW_HISTORY"]))
+      {
+        setcookie("VIEW_HISTORY", $movieid ,time() + (86400 * 30), '/');
+        return;
+      }
+     $cookie_arr = explode(',',$_COOKIE["VIEW_HISTORY"]);
+     if(!in_array($movieid, $cookie_arr))
+     {
+       array_push($cookie_arr, $movieid);
+       if(count($cookie_arr) == 8)
+        array_splice($cookie_arr, 1, 1);
+      $cookie_value = implode(',',$cookie_arr);
+       setcookie('VIEW_HISTORY', $cookie_value, time() + 86400 * 30, "/");
 
+     }
+   }
 
 ?>
 <html>
@@ -20,6 +32,19 @@
   <link rel="stylesheet" href="./assets/css/movie.css" />
   <link rel="stylesheet" href="./assets/css/footer.css" />
 
+  <script>
+    function checkReviewLength(e)
+    {
+
+      var review = document.getElementById("text-review").value.trim();
+      if(review.length < 200)
+      {
+
+          e.preventDefault();
+          document.getElementsByClassName('review-error')[0].innerHMTL = "bla";
+      }
+    }
+  </script>
 </head>
 <body>
   <div class="container main-container">
@@ -30,10 +55,12 @@
       <div class="container content">
         <div class = "row">
           <div class = "col-md-8">
-            <?php echo strtotime('10 July 2015');
+            <?php
+            manage_cookies();
 
-             $result = mysqli_query($con, "SELECT * FROM movie inner join movie_meta on movie_meta.movie_id = movieid WHERE movieid = $movieid ");
+             $result = mysqli_query($con, "SELECT * FROM movie inner join movie_meta on movie_meta.movie_id = movie.movie_id WHERE movie.movie_id = $movieid ");
              $row = mysqli_fetch_assoc($result);
+             $isReleased = strtotime($row['release_date']) <= strtotime(date("Y-m-d"));
              ?>
             <h3><?php echo $row['title'];?></h3>
           </div>
@@ -49,14 +76,14 @@
             <img src="<?php echo $row['title_poster_path']; ?>" >
           </div>
           <div class="col-md-6">
-            <h6><?php echo $row['content_rating'],'|', $row['genre'],'|',$row['runtime'],'|',$row['release_date']?></h6>
+            <h6><?php echo $row['content_rating'],'|', $row['genre'],'|',$row['runtime'],'|',date("d M, Y", strtotime($row['release_date']))?></h6>
             <hr/>
             <?php
              $result = mysqli_query($con, "SELECT * FROM movie_meta WHERE movie_id = $movieid ");
              $row = mysqli_fetch_assoc($result);
              ?>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              <?php echo $row['summary'];?>
             </p>
           </div>
           <div class="col-md-3 movie-meta-side">
@@ -94,8 +121,47 @@
           <?php } ?>
           </tbody>
         </table>
+
       </div>
+    <hr />
+    <br/>
+    <br/>
+
+      <?php
+      if (!$isReleased)
+      {
+        echo '<h3>Yet to be released. Stay in touch for more updates.</h3>';
+      }
+      else {
+
+
+      if(isset($_SESSION['user_id']))
+        {
+          $query = "SELECT * FROM user_feedback WHERE movie_id = '".$movieid."' and user_id = '".$_SESSION['user_id']."'";
+          $result = mysqli_query($con, $query );
+          if(mysqli_num_rows($result)==0)
+          {
+            ?>
+            <div class="row">
+              <div class="review-error">
+
+              </div>
+              <div class="col-md-3">
+                <h5>RATE THIS MOVIE:</h5>
+              </div>
+              <div class="col-md-9">
+              <form class="post-review" action="review.php" method="POST">
+                <textarea id="text-review" name="review" rows="5"  placeholder = "Your review here (Min. 200 characters)..." ></textarea>
+                <input type="submit" id="review-submit" value="submit" name="action" onclick = "checkReviewLength();"/>
+              </form>
+            </div>
+            </div>
+            <?php
+          }
+        }
+      ?>
       <h4>REVIEWS </h4>
+
       <div class = "reviews">
         <?php
         $query = "SELECT * FROM user_feedback WHERE movie_id = $movieid ORDER BY ";
@@ -112,7 +178,7 @@
           <h6>
             <?php
             $uname = $row['user_id'];
-            $user_row =  mysqli_query($con, "SELECT * FROM user WHERE userid = $uname ");
+            $user_row =  mysqli_query($con, "SELECT * FROM user WHERE user_id = $uname ");
             echo mysqli_fetch_assoc($user_row)['fname'];
 
             ?>
@@ -139,10 +205,11 @@
 
 
       </div>
-      <hr/>
+
 
       <?php } ?>
       </div>
+    <?php } ?>
     </div>
     </main>
     <?php include 'footer.php';?>
@@ -150,5 +217,3 @@
   </div>
 </body>
 </html>
-<?php mysqli_close($con);
-      ?>

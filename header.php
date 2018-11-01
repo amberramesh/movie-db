@@ -1,6 +1,13 @@
 <?php
 session_start();
 $_SESSION['user_id'] = '111';
+
+define('DB_SERVER', 'localhost');
+define('DB_USERNAME', 'root');
+define('DB_PASSWORD', 'root');
+define('DB_DATABASE', 'moviedb');
+$con = mysqli_connect(DB_SERVER,DB_USERNAME,DB_PASSWORD,DB_DATABASE);
+
 ?>
 <header>
   <div class="jumbotron jumbotron-fluid ">
