@@ -19,13 +19,14 @@
         $date =  strtotime(date("Y-m-d"));
         $result = mysqli_query($con, "SELECT m.movie_id,m.title, m.release_date, mm.title_poster_path FROM movie as m, movie_meta as mm where m.movie_id = mm.movie_id and unix_timestamp(release_date) >".$date." limit 5");
 
-        $row = mysqli_fetch_assoc($result);
+
         $ct =  mysqli_num_rows($result); //number of cards to be displayed
         $num_cards = $ct;
         for($card_rows = 0; $card_rows < ceil($ct/3); $card_rows++)
         {
           echo '<div class="row">';
           for($cards= 0; $cards < min(3, $num_cards); $cards++){
+            $row = mysqli_fetch_assoc($result);
             ?>
             <div class="col-md-4" >
               <div class="card" >
@@ -58,13 +59,14 @@
         $query = $query." where m.movie_id = mm.movie_id and unix_timestamp(release_date) <= ".$date." order by release_date desc limit 5";
         $result = mysqli_query($con, $query);
 
-        $row = mysqli_fetch_assoc($result);
+
         $ct =  mysqli_num_rows($result); //number of cards to be displayed
         $num_cards = $ct;
         for($card_rows = 0; $card_rows < ceil($ct/3); $card_rows++)
         {
           echo '<div class="row">';
           for($cards= 0; $cards < min(3, $num_cards); $cards++){
+            $row = mysqli_fetch_assoc($result);
             ?>
             <div class="col-md-4" >
               <div class="card" >
@@ -84,6 +86,7 @@
             </div>
             <?php
             $ct--;
+
           }
           echo '</div>';
         }
@@ -96,13 +99,14 @@
         $query = $query." where m.movie_id = mm.movie_id and unix_timestamp(release_date) <= ".$date." order by avg_rating desc limit 5";
         $result = mysqli_query($con, $query);
 
-        $row = mysqli_fetch_assoc($result);
+
         $ct =  mysqli_num_rows($result); //number of cards to be displayed
         $num_cards = $ct;
         for($card_rows = 0; $card_rows < ceil($ct/3); $card_rows++)
         {
           echo '<div class="row">';
           for($cards= 0; $cards < min(3, $num_cards); $cards++){
+            $row = mysqli_fetch_assoc($result);
             ?>
             <div class="col-md-4" >
               <div class="card" >
