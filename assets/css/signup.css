@@ -7,18 +7,22 @@ body {
 	color: #F0F0F0;
 }
 
+.vertical-center {
+	min-height: 100%; 
+	display: flex;
+	align-items: center;
+}
+
 #registerContainer {
-	margin: 10% auto;
+	margin: auto;
 	color: #0F0F0F;
-	vertical-align: middle;
 	max-width: 600px;
 	min-width: 200px;
 	max-height: fit-content;
-	background-color: rgba(220.0, 220.0, 220.0, 0.8);
+	background-color: rgba(220.0, 220.0, 220.0, 0.9);
 	padding: 30px;
 	border-radius: 10px;
 }
-
 
 #buttonBox {
 	margin: 20px 20px 5px;
@@ -31,6 +35,12 @@ body {
 	font-size: 20px;
 	background-color: #AA0000;
 	border-radius: 20px;
+}
+
+p {
+	text-align: center;
+	margin-top: 20px;
+	margin-bottom: 0px;
 }
 
 a:link {

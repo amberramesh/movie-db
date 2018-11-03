@@ -23,14 +23,12 @@ body {
 	max-width: 450px;
 	min-width: 200px;
 	max-height: fit-content;
-	background-color: rgba(220.0, 220.0, 220.0, 0.8);
+	background-color: rgba(220.0, 220.0, 220.0, 0.9);
 	padding: 30px;
 	border-radius: 10px;
-}
-
-#loginContainer {
 	color: #0F0F0F;
 }
+
 
 #buttonBox {
 	margin: 20px 20px 5px;
