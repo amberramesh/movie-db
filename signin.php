@@ -1,5 +1,6 @@
-<?php 
+<?php
 	session_start();
+
 	if(isset($_SESSION["user_id"])) {
 		header("Location: index.php");
 		die();
@@ -26,7 +27,7 @@
 		</div>
 		<div class="vertical-center">
 			<div class="container">
-			
+
 				<?php if(isset($_GET["signup"]) && $_GET["signup"] == "success"): ?>
 				<div id="signupSuccess" class="row">
 					<div class="alert alert-success col" role="alert">
@@ -35,7 +36,7 @@
 					</div>
 				</div>
 				<?php endif; ?>
-				
+
 				<?php if(isset($_GET["signup"]) && $_GET["signup"] == "failure"): ?>
 				<div id="signupFailure" class="row">
 					<div class="alert alert-danger col" role="alert">
@@ -44,7 +45,7 @@
 					</div>
 				</div>
 				<?php endif; ?>
-				
+
 				<?php if(isset($_GET["signin"]) && $_GET["signin"] == "invalid"): ?>
 				<div id="signinFailure" class="row">
 					<div class="alert alert-danger col" role="alert">
@@ -53,7 +54,7 @@
 					</div>
 				</div>
 				<?php endif; ?>
-				
+
 				<div class="row">
 					<div class="col-md-6" id="membersAccess">
 					<p><h2>Having an account lets you</h2></p>

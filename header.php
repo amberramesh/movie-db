@@ -1,7 +1,7 @@
 <?php
 session_start();
 //$_SESSION['user_id'] = '111';
-
+$_SESSION['url']="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 define('DB_SERVER', 'localhost');
 define('DB_USERNAME', 'root');
 define('DB_PASSWORD', 'root');
@@ -30,8 +30,8 @@ $con = mysqli_connect(DB_SERVER,DB_USERNAME,DB_PASSWORD,DB_DATABASE);
         else
         {
           ?>
-          <li class="nav-item" hidden>
-            <a class="nav-link active" href="#">My Account</a>
+          <li class="nav-item" >
+            <a class="nav-link active" href="account.php">My Account</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="logout.php">Logout</a>

@@ -73,7 +73,12 @@
 
                 <div class="rating-overlay">
                   <h3>RATING:</h3>
-                  <h3><?php echo $row['avg_rating'].'/10';?></h3>
+                  <?php if($row['avg_rating']==0){
+                    echo "<h3>No ratings to show</h3>";
+                  }
+                  else {
+                    echo "<h3>".$row['avg_rating']."/10</h3>";
+                  }?>
                 </div>
                 <img class="card-img-top " src="<?php echo $row['title_poster_path']?>" title="<?php echo $row['title']?>">
                 <a href="movie.php?id=<?php echo $row['movie_id']?>">
@@ -115,7 +120,59 @@
 
                 <div class="rating-overlay">
                   <h3>RATING:</h3>
-                  <h3><?php echo $row['avg_rating'].'/10';?></h3>
+                  <?php if($row['avg_rating']==0){
+                    echo "<h3>No ratings to show</h3>";
+                  }
+                  else {
+                    echo "<h3>".$row['avg_rating']."/10</h3>";
+                  }?>
+                </div>
+                <img class="card-img-top " src="<?php echo $row['title_poster_path']?>" title="<?php echo $row['title']?>">
+                <a href="movie.php?id=<?php echo $row['movie_id']?>">
+                  <div class="card-body">
+                    <h6 class="card-title"><?php echo $row['title']?></h6>
+                    <p class="card-text"><?php echo '('.date("Y",strtotime($row['release_date'])).')';?></p>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <?php
+          }
+          $num_cards-=3;
+          echo '</div>';
+          echo '<br />';
+        }
+        ?>
+
+        <h2>Classics</h2>
+        <?php
+        $date =  strtotime("2001/12/30");
+        $query = "SELECT m.movie_id,m.title, m.release_date, m.avg_rating, mm.title_poster_path FROM movie as m, movie_meta as mm";
+        $query = $query." where m.movie_id = mm.movie_id and unix_timestamp(release_date) <= ".$date." and m.avg_rating >= 7.5 order by avg_rating desc limit 5";
+        $result = mysqli_query($con, $query);
+
+
+        $ct =  mysqli_num_rows($result); //number of cards to be displayed
+        $num_cards = $ct;
+
+        for($card_rows = 0; $card_rows < ceil($ct/3); $card_rows++)
+        {
+          echo '<div class="row">';
+          for($cards= 0; $cards < min(3, $num_cards); $cards++){
+            $row = mysqli_fetch_assoc($result);
+
+            ?>
+            <div class="col-md-4" >
+              <div class="card" >
+
+                <div class="rating-overlay">
+                  <h3>RATING:</h3>
+                  <?php if($row['avg_rating']==0){
+                    echo "<h3>No ratings to show</h3>";
+                  }
+                  else {
+                    echo "<h3>".$row['avg_rating']."/10</h3>";
+                  }?>
                 </div>
                 <img class="card-img-top " src="<?php echo $row['title_poster_path']?>" title="<?php echo $row['title']?>">
                 <a href="movie.php?id=<?php echo $row['movie_id']?>">

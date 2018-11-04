@@ -1,5 +1,10 @@
 <?php
 session_start();
 session_destroy();
-header("Location:http://localhost/moviedb/", true);
+if(isset($_SESSION['url']))
+{
+  header("Location:".$_SESSION['url']);
+}
+else
+  header("Location:http://localhost/moviedb/", true);
 ?>

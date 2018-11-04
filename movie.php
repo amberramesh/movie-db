@@ -47,7 +47,7 @@
           <div class = "col-md-8">
             <?php
             manage_cookies();
-
+            
              $result = mysqli_query($con, "SELECT * FROM movie inner join movie_meta on movie_meta.movie_id = movie.movie_id WHERE movie.movie_id = $movieid ");
              $row = mysqli_fetch_assoc($result);
              $isReleased = strtotime($row['release_date']) <= strtotime(date("Y-m-d"));
@@ -159,6 +159,7 @@
                 <input type="text" name="movie_id" value =<?php echo $movieid?> hidden/>
                 <input type="text" id="rating-for-submit" name="rating" value="5.0" hidden/ >
                 <input type="submit" id="review-submit" name="action" value="Post"  disabled/>
+                <input type="text" name="movie_id" value="<?php echo $movieid ?>"  hidden>
               </form>
             </div>
             </div>
