@@ -12,4 +12,18 @@ if($_POST['action']=="Delete")
    mysqli_query($con, $sql);
    header("Location:http://localhost/moviedb/movie.php?id=".$_POST['movie_id'], true);
 }
+else if($_POST['action']=="Post")
+{
+  $dateFormat = date('Y-m-d');
+
+  $sql = "insert into user_feedback values(";
+  $sql = $sql.$_POST['user_id'];
+  $sql = $sql." ,'".$_POST['movie_id']."'";
+  $sql = $sql." ,".$_POST['rating'];
+  $sql = $sql." ,'".$_POST['review']."'";
+  $sql = $sql." ,'".$dateFormat."')";
+  echo $sql;
+  mysqli_query($con, $sql);
+    header("Location:http://localhost/moviedb/movie.php?id=".$_POST['movie_id'], true);
+}
 ?>

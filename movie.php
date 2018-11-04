@@ -33,17 +33,7 @@
   <link rel="stylesheet" href="./assets/css/footer.css" />
 
   <script>
-    function checkReviewLength(e)
-    {
 
-      var review = document.getElementById("text-review").value.trim();
-      if(review.length < 200)
-      {
-
-          e.preventDefault();
-          document.getElementsByClassName('review-error')[0].innerHMTL = "bla";
-      }
-    }
   </script>
 </head>
 <body>
@@ -148,11 +138,27 @@
               </div>
               <div class="col-md-3">
                 <h5>RATE THIS MOVIE:</h5>
+                <br />
+                <div class="rating-slider">
+                  <label name="rating" id="user-rating">5.0 </label><label>/ <b>10.0</b></label>
+                  <input type = "range" min="1.0" max="10.0" step="0.5" value="5.0" oninput="changeRating(this.value);"/ >
+                </div>
+                <br/>
+                <!-- for toggling reviewbox
+                <div class="enable-review-div">
+                  <input type = "checkbox" onclick="toggleReviewBox(this.checked);"/ >
+                  <label>Leave a review</label>
+                </div>
+              -->
               </div>
               <div class="col-md-9">
-              <form class="post-review" action="review.php" method="POST">
-                <textarea id="text-review" name="review" rows="5"  placeholder = "Your review here (Min. 200 characters)..." ></textarea>
-                <input type="submit" id="review-submit" value="submit" name="action" onclick = "checkReviewLength();"/>
+                <br /><br />
+              <form class="post-review" action="review.php" method="POST" >
+                <textarea id="text-review" name="review" rows="5"  placeholder = "Your review here (Min. 50 characters)..."  oninput= "checkReviewLength(this.value);" ></textarea>
+                <input type="number" name="user_id" value =<?php echo $_SESSION['user_id']?> hidden />
+                <input type="text" name="movie_id" value =<?php echo $movieid?> hidden/>
+                <input type="text" id="rating-for-submit" name="rating" value="5.0" hidden/ >
+                <input type="submit" id="review-submit" name="action" value="Post"  disabled/>
               </form>
             </div>
             </div>
@@ -179,7 +185,11 @@
             <?php
             $uname = $row['user_id'];
             $user_row =  mysqli_query($con, "SELECT * FROM user WHERE user_id = $uname ");
-            echo mysqli_fetch_assoc($user_row)['fname'];
+            $rater_name = mysqli_fetch_assoc($user_row)['fname'];
+            if($uname==0)
+              echo "<b>Anonymous</b>";
+            else
+              echo "<b>".$rater_name."</b>";;
 
             ?>
           </h6>
@@ -205,6 +215,8 @@
 
 
       </div>
+      <hr>
+  </br>
 
 
       <?php } ?>
@@ -213,7 +225,42 @@
     </div>
     </main>
     <?php include 'footer.php';?>
+    <script>
 
+      function changeRating(val)
+      {
+        document.getElementById("user-rating").innerHTML = val;
+        document.getElementById("rating-for-submit").value = val;
+      }
+      /*
+      function toggleReviewBox(checked)
+      {
+        var text = document.getElementById("text-review");
+
+        var submit = document.getElementById("review-submit")
+        if(checked == true)
+        {
+          text.disabled = false;
+          checkReviewLength(text.value);
+        }
+        else {
+          text.disabled = true;
+          submit.disabled = true;
+        }
+      }
+      */
+      function checkReviewLength(review)
+      {
+
+        if(review.trim().length >= 50)
+        {
+          document.getElementById("review-submit").disabled = false;
+        }
+        else {
+          document.getElementById("review-submit").disabled = true;
+        }
+      }
+    </script>
   </div>
 </body>
 </html>

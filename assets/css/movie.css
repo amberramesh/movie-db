@@ -51,3 +51,25 @@ textarea
   margin-left: -30px;
   margin-top: 5px;
 }
+
+.rating-slider
+{
+  background-color: grey;
+  max-width: 150px;
+  padding: 5px;
+}
+.rating-slider label
+{
+  font-size: 30px;
+}
+.rating-slider input
+{
+  width: 100%;
+}
+
+.enable-review-div
+{
+  background-color: grey;
+  padding: 2px;
+  width: 150px;
+}

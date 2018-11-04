@@ -3,11 +3,6 @@
    $title = preg_replace("/[^a-zA-Z0-9 ]+/", "", $title);
    $genre = $_GET['genre'];
 
-   define('DB_SERVER', 'localhost');
-   define('DB_USERNAME', 'root');
-   define('DB_PASSWORD', 'root');
-   define('DB_DATABASE', 'moviedb');
-   $con = mysqli_connect(DB_SERVER,DB_USERNAME,DB_PASSWORD,DB_DATABASE);
 
 ?>
 <html>
@@ -27,11 +22,14 @@
     <main>
       <div class="container content">
         <?php
-        $query = "select movieid, title, genre from movie ";
+        $query = "select movie_id, title, genre from movie ";
         if($title != '')
           $query = $query."where LOWER(title) like LOWER('%".$title."%') ";
         else
-          $query = $query."where 1=1 ";
+          {
+            $query = $query."where 1=1 ";
+
+          }
         if($genre != "All")
           $query = $query."and LOWER(genre) like LOWER('%".$genre."%') ";
 
@@ -41,7 +39,7 @@
           echo '<h1>No results found :-(</h1>';
         else {
          while($row = mysqli_fetch_assoc($result)){
-           echo "<a href='movie.php?id=".$row['movieid']."'><h2>".$row['title']." (".$row['genre'].")</h2></a>";
+           echo "<a href='movie.php?id=".$row['movie_id']."'><h2>".$row['title']." (".$row['genre'].")</h2></a>";
 
          }
        }
@@ -53,4 +51,3 @@
   </div>
 </body>
 </html>
-<?php mysqli_close($con);?>

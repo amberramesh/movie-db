@@ -3,19 +3,29 @@
     src: url(../fonts/Aller_Rg.ttf);
 }
 
+
 html, body
 {
   height: 100%;
-  background-color: black;
+  background-image: url("../images/tile.jpg");
+  background-attachment: fixed;
+  background-repeat: repeat-y;
+  background-size: cover;
   font-family: Aller;
+
 }
 .main-container
 {
   padding: 0;
-  background-color: white;
-  min-width: 1000px;
+  background-color: rgba(255,255,255,0.9);
+  bac
+
 }
 
+main{
+  min-height:100vh;
+
+}
 h2
 {
   padding-top: 40px;
@@ -38,7 +48,7 @@ h2
   width:250px;
   height: 350px;
   padding-top: 50%;
-  
+
 }
 
 .card-body{

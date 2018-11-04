@@ -1,6 +1,6 @@
 <?php
 session_start();
-$_SESSION['user_id'] = '111';
+//$_SESSION['user_id'] = '111';
 
 define('DB_SERVER', 'localhost');
 define('DB_USERNAME', 'root');
@@ -12,25 +12,25 @@ $con = mysqli_connect(DB_SERVER,DB_USERNAME,DB_PASSWORD,DB_DATABASE);
 <header>
   <div class="jumbotron jumbotron-fluid ">
     <div class="container">
-      <h1 class="display-4 logo">MovieDB</h1>
+      <a class="home-link" href="/moviedb"><h1 class="display-4 logo">MovieDB</h1></a>
 
-      <p class="lead text-center"><em>The best community powered online-catalogue for real moviebuffs. </em></p>
+      <p class="lead text-center">The best community powered online-catalogue for real moviebuffs</p>
       <ul class="nav justify-content-end header-links">
         <?php if(!isset($_SESSION['user_id']))
         {
           ?>
           <li class="nav-item">
-            <a class="nav-link active" href="signin.html">Login</a>
+            <a class="nav-link active" href="signin.php">Login</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="signup.html">SignUp</a>
+            <a class="nav-link" href="signup.php">SignUp</a>
           </li>
         <?php }
 
         else
         {
           ?>
-          <li class="nav-item">
+          <li class="nav-item" hidden>
             <a class="nav-link active" href="#">My Account</a>
           </li>
           <li class="nav-item">
@@ -49,10 +49,16 @@ $con = mysqli_connect(DB_SERVER,DB_USERNAME,DB_PASSWORD,DB_DATABASE);
           <label>&nbsp &nbsp in Genre: &nbsp &nbsp</label>
           <select class="form-control" name="genre">
             <option selected>All</option>
-            <option value="Action">Action</option>
-            <option value="Adventure">Adventure</option>
-            <option value="Fantasy">Fantasy</option>
-            <option value="Horror">Horror</option>
+            <option>Action</option>
+            <option>Adventure</option>
+            <option>Animation</option>
+            <option>Biography</option>
+            <option>Comedy</option>
+            <option>Crime</option>
+            <option>Drama</option>
+            <option>Fantasy</option>
+            <option>Horror</option>
+
           </select>
           <input type="submit" class="btn btn-dark" value="Search"/>
 
