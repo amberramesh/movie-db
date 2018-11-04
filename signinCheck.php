@@ -18,7 +18,7 @@
 		if($result->num_rows == 1) {
 			$user_id = (string)mysqli_fetch_row($result)[0];
 			$_SESSION["user_id"] = $user_id;
-			header("Location: account.php");
+			header("Location: index.php");
 			// isset($_POST["createCookie"])
 		} else
 			header("Location: signin.php?signin=invalid");
