@@ -1,5 +1,26 @@
 $(document).ready(function() {
 	
+	if($("#signupSuccess") !== null) {
+		$("#signupSuccess").click(function() {
+			$(this).slideUp("slow","swing");
+		});
+		setTimeout(function() { $("#signupSuccess").slideUp("slow","swing"); }, 5000);
+	}
+	
+	if($("#signupFailure") !== null) {
+		$("#signupFailure").click(function() {
+			$(this).slideUp("slow","swing");
+		});
+		setTimeout(function() { $("#signupFailure").slideUp("slow","swing"); }, 5000);
+	}
+	
+	if($("#signinFailure") !== null) {
+		$("#signinFailure").click(function() {
+			$(this).slideUp("slow","swing");
+		});
+		setTimeout(function() { $("#signinFailure").slideUp("slow","swing"); }, 5000);
+	}
+	
 	$("#loginForm").submit(function(e) {
 		
 		var email = $("#email");

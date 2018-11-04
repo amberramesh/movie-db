@@ -7,8 +7,22 @@ body {
 	color: #F0F0F0;
 }
 
+#siteLogo {
+	margin: 20px -15px;
+}
+
+#siteLogoName {
+	color: #FFFFFF;
+	font-size: 1.2em;
+	margin-left: 15px;
+	text-decoration: none;
+}
+
+#siteLogoName:hover {
+	text-decoration: none;
+}
+
 .vertical-center {
-	min-height: 100%; 
 	display: flex;
 	align-items: center;
 }

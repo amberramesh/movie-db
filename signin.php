@@ -1,7 +1,7 @@
-<?php
+<?php 
 	session_start();
 	if(isset($_SESSION["user_id"])) {
-		header("Location: index.php");
+		header("Location: account.php");
 		die();
 	}
 ?>
@@ -15,40 +15,45 @@
 		<link rel="stylesheet" href="assets/css/open-iconic-bootstrap.min.css">
 		<link rel="stylesheet" href="assets/css/signin.css" />
 		<script src="assets/js/jquery-3.3.1.min.js"></script>
-		<!-- <script src="assets/js/bootstrap.min.js"></script> -->
+		<script src="assets/js/bootstrap.min.js"></script>
 		<script src="assets/js/signin.js"></script>
 	<head>
 	<body>
+		<div class="container">
+  		  <div class="row" id="siteLogo">
+			<h1><a id="siteLogoName" href="index.php">MovieDB</a></h1>
+		  </div>
+		</div>
 		<div class="vertical-center">
 			<div class="container">
-
-				<?php if(isset($_GET["signup"]) && $_GET["signup"] == "successful"): ?>
-				<div class="row">
+			
+				<?php if(isset($_GET["signup"]) && $_GET["signup"] == "success"): ?>
+				<div id="signupSuccess" class="row">
 					<div class="alert alert-success col" role="alert">
 						<h4 class="alert-heading">Account created!</h4>
 						<p>You can now sign in with your new account.</p>
 					</div>
 				</div>
 				<?php endif; ?>
-
+				
 				<?php if(isset($_GET["signup"]) && $_GET["signup"] == "failure"): ?>
-				<div class="row">
+				<div id="signupFailure" class="row">
 					<div class="alert alert-danger col" role="alert">
 						<h4 class="alert-heading">Error</h4>
 						<p>Unable to register at the moment.</p>
 					</div>
 				</div>
 				<?php endif; ?>
-
+				
 				<?php if(isset($_GET["signin"]) && $_GET["signin"] == "invalid"): ?>
-				<div class="row">
+				<div id="signinFailure" class="row">
 					<div class="alert alert-danger col" role="alert">
 						<h4 class="alert-heading">Error</h4>
 						<p>E-mail or password entered is invalid.</p>
 					</div>
 				</div>
 				<?php endif; ?>
-
+				
 				<div class="row">
 					<div class="col-md-6" id="membersAccess">
 					<p><h2>Having an account lets you</h2></p>

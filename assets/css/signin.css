@@ -11,8 +11,23 @@ body {
 	color: #F0F0F0;
 }
 
+#siteLogo {
+	margin: 20px -15px;
+}
+
+#siteLogoName {
+	color: #FFFFFF;
+	font-size: 1.2em;
+	margin-left: 15px;
+	text-decoration: none;
+}
+
+#siteLogoName:hover {
+	text-decoration: none;
+}
+
 .vertical-center {
-	min-height: 100%; 
+	min-height: 80%;
 	display: flex;
 	align-items: center;
 }
@@ -51,16 +66,17 @@ p {
 	align-items: center;
 }
 
-a:link {
+a {
 	color: #F0F0F0;
 	font-weight: bold;
 	text-decoration: underline;
 }
 
 a:hover {
+	text-decoration: underline;
 	color: #AA0000;
 }
 
 a:visited {
-	color: #F0F0F0;
+	text-decoration: none;
 }

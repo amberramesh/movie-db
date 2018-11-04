@@ -1,0 +1,106 @@
+body {
+	background-image: url("../images/smokey_background.png");
+	background-repeat: no-repeat;
+    background-position: left top;
+    background-attachment: fixed;
+	font-family: Calibri;
+	color: #F0F0F0;
+}
+
+#siteLogo {
+	margin: 20px -15px;
+}
+
+#siteLogoName {
+	color: #FFFFFF;
+	font-size: 1.2em;
+	margin-left: 15px;
+}
+
+#siteLogoName:hover {
+	text-decoration: none;
+}
+
+.vertical-center {
+	min-height: 100%; 
+	display: flex;
+	align-items: center;
+}
+
+.card {
+	color: #0F0F0F;
+	background-color: rgba(220.0, 220.0, 220.0, 0.9);
+}
+
+#accordion {
+	margin-bottom: 30px;
+}
+
+#accordion h6, #accordion h4{
+	margin-bottom: 2px;
+}
+#reviewContainer {
+	color: #0F0F0F;
+	background-color: rgba(220.0, 220.0, 220.0, 0.9);
+	border-radius: 5px;
+	padding: 20px;
+}
+
+#reviewContainer .col-md-2 {
+	display: grid;
+	align-items: center;
+}
+
+.review-date {
+	color: #5F5F5F;
+	font-size: 0.9em;
+	margin: 0px;
+}
+
+.review-score {
+	font-weight: bold;
+	margin: 0px;
+	text-align: center;
+}
+
+#buttonBox {
+	margin: 20px 20px 5px;
+}
+
+.red-button {
+	color: #F0F0F0;
+	padding: 8px;
+	border: none;
+	font-size: 16px;
+	background-color: #AA0000;
+	border-radius: 16px;
+}
+
+.btn-link {
+	color: #0F0F0F;
+	font-weight: bold;
+}
+
+.btn-link:hover {
+	text-decoration: none;
+	color: #AA0000;
+}
+
+.btn-link:focus {
+	text-decoration: none;
+	color: #AA0000;
+}
+
+a {
+	color: #0F0F0F;
+	font-weight: bold;
+}
+
+a:hover {
+	text-decoration: none;
+	color: #AA0000;
+}
+
+a:visited {
+	text-decoration: none;
+}
