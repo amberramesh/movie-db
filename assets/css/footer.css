@@ -1,10 +1,27 @@
+.viewed
+{
+  background-color: rgba(64, 66, 71, 0.4);
+  padding-bottom: 5px;
+}
+.footer-heading
+{
+  text-align: center;
+}
+.viewed-img{
+  width: 70px;
+  height: 100px;
+  margin-left: 5%;
+}
+.viewed-img:hover{
+  border: 2px solid black;
 
+}
 .jumbotron-fluid
 {
   background-color: #171819;
   color: white;
   padding: 10px 0 10px 10px;
 
-  margin-top: 25px;
+
   margin-bottom: 0px;
 }

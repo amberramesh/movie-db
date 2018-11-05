@@ -189,27 +189,12 @@
           echo '</div>';
           echo '<br />';
         }
-        ?>
 
-        <h2>You Recently Viewed</h2>
-        <?php $num = 8;  //number of cards to display
-
-        if(!isset($_COOKIE["VIEW_HISTORY"]))
-        echo '<h5>You view history is empty.</h5>';
-        else {
-          $viewed = explode(",",$_COOKIE['VIEW_HISTORY']);
           ?>
 
-          <?php
-          foreach($viewed as $item)
-          {
-            $result = mysqli_query($con, "select mm.title_poster_path, m.title from movie_meta as mm, movie as m where m.movie_id = mm.movie_id and m.movie_id= '".$item."'");
-            $row = mysqli_fetch_assoc($result);
-            ?>
-            <a href="movie.php?id=<?php echo $row['movie_id']?>"><img class="card-img-top viewed-img" src="<?php echo $row['title_poster_path']?>" alt="<?php echo $row['title']?>" title="<?php echo $row['title']?>"></a>
-            <?php
-          }
-        } ?>
+
+
+
 
 
 
