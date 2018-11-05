@@ -29,6 +29,8 @@ img
 
 .post-review{
   min-width: 100%;
+  display: flex;
+  align-items: center;
 
 }
 textarea
@@ -36,6 +38,11 @@ textarea
   min-width: 90%;
   text-align: left;
 }
+
+#review-submit {
+	margin: 10px;
+}
+
 .reviews .col-md-3 p
 {
   margin-bottom: -5px;
@@ -49,13 +56,12 @@ textarea
 }
 
 .delete{
-  margin-left: -30px;
-  margin-top: 5px;
+	margin: 10px auto;
 }
 
 .rating-slider
 {
-  background-color: grey;
+  background-color: #CCCCCCCC;
   max-width: 150px;
   padding: 5px;
 }

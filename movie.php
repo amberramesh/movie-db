@@ -57,7 +57,12 @@
           <div class = "col-md-1">
           </div>
           <div class = "col-md-3">
-            <h4>AVG. RATING: <?php echo $row['avg_rating'] ?> </h4>
+            <h4>AVG. RATING: 
+			<?php if($row['avg_rating']==0)
+				echo "-";
+			else
+			echo $row['avg_rating'] ?> 
+			</h4>
 
           </div>
         </div>

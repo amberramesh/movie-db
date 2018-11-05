@@ -1,6 +1,10 @@
 <?php
 session_start();
 //$_SESSION['user_id'] = '111';
+	
+if(isset($_COOKIE["user"]))
+	$_SESSION["user_id"] = $_COOKIE["user"];
+	
 $_SESSION['url']="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 define('DB_SERVER', 'localhost');
 define('DB_USERNAME', 'root');

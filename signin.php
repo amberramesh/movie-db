@@ -1,6 +1,9 @@
 <?php
 	session_start();
-
+	
+	if(isset($_COOKIE["user"]))
+		$_SESSION["user_id"] = $_COOKIE["user"];
+	
 	if(isset($_SESSION["user_id"])) {
 		header("Location: index.php");
 		die();
@@ -81,7 +84,7 @@
 								<div class="feedback"></div>
 							</div>
 							<div class="custom-control custom-checkbox">
-								<input type="checkbox" class="custom-control-input" name="createCookie" id="createCookie" value="true" />
+								<input type="checkbox" class="custom-control-input" name="createCookie" id="createCookie" value="true"/>
 								<label class="custom-control-label" for="createCookie">Remember Me</label>
 							</div>
 							<div id="buttonBox">

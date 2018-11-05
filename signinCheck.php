@@ -18,14 +18,15 @@
 		if($result->num_rows == 1) {
 			$user_id = (string)mysqli_fetch_row($result)[0];
 			$_SESSION["user_id"] = $user_id;
-			if(isset($_SESSION['url']))
-			{
-
-				header("Location:".$_SESSION['url']);
+			if(isset($_POST["createCookie"])) {
+				$cookie_name = "user";
+				$cookie_value = $_SESSION["user_id"];
+				setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/");
 			}
+			if(isset($_SESSION['url']))
+				header("Location:".$_SESSION['url']);
 			else
 				header("Location: index.php");
-			// isset($_POST["createCookie"])
 		} else
 			header("Location: signin.php?signin=invalid");
 

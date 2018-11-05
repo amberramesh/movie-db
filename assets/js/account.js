@@ -38,6 +38,8 @@ $(document).ready(function () {
 			this.style.color = "#D80000";
 	});
 	
+	var isChanged = false;
+	
 	
 	$("[type=text]").focus(function() {
 		$(this).next().hide();
@@ -61,7 +63,7 @@ $(document).ready(function () {
 				var message = $(input).next();
 				if(response === "Valid") {
 					$(input).removeClass("is-invalid").addClass("is-valid");
-					message.removeClass("invalid-feedback").hide();
+					message.removeClass("invalid-feedback").hide().html("");
 					validInfo[key] = 1;
 				}
 				else {
@@ -76,16 +78,19 @@ $(document).ready(function () {
 	$("#fname").change(function() {
 		validInfo['fname'] = 0;
 		validate("fname", $(this).val());
+		isChanged = true;
 	});
 	
 	$("#lname").change(function() {
 		validInfo['lname'] = 0;
 		validate("lname", $(this).val());
+		isChanged = true;
 	});
 	
 	$("#email").change(function() {
 		validInfo['email'] = 0;
 		validate("email", $(this).val());
+		isChanged = true;
 	});
 	
 	$("#editInformationForm").submit(function(e) {
@@ -99,16 +104,18 @@ $(document).ready(function () {
 		if(validInfo['email'] === 0)
 			validate("email", $("#email").val());
 		
-		isValid = true;
-		$.each(validInfo, function(key, value) {
-			if(value === 0) {
-				isValid = false;
+		if(isChanged) {
+			isValid = true;
+			$.each(validInfo, function(key, value) {
+				if(value === 0) {
+					isValid = false;
+				}
+			});
+			
+			if(!isValid) {
+				e.preventDefault();
+				return;
 			}
-		});
-		
-		if(!isValid) {
-			e.preventDefault();
-			return;
 		}
 		
 	});

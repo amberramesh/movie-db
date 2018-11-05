@@ -1,5 +1,9 @@
 <?php 
 	session_start(); 
+		
+	if(isset($_COOKIE["user"]))
+		$_SESSION["user_id"] = $_COOKIE["user"];
+	
 	if(isset($_SESSION["user_id"])) {
 		header("Location: index.php");
 		die();

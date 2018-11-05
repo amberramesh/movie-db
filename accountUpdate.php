@@ -73,7 +73,7 @@
 	
 	if(isset($_POST["email"]) && $_SESSION["user_id"]) {
 		$email = $_POST["email"];
-		$regex = "/[^@]+@[^\.]+\..+/";
+		$regex = "/^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/";
 		$sql = "SELECT user_id FROM user WHERE email='".$email."' AND user_id !='".$_SESSION["user_id"]."'";
 		
 		if($email == "")
