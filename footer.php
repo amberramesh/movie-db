@@ -2,6 +2,7 @@
 <div class="viewed">
 
   <?php
+
   if (isset($_SESSION['user_id']))
   {
     ?>
@@ -16,8 +17,9 @@
       foreach($viewed as $item)
       {
 
-        $result = mysqli_query($con, "select mm.title_poster_path, m.title from movie_meta as mm, movie as m where m.movie_id = mm.movie_id and m.movie_id= '".$item."'");
+        $result = mysqli_query($con, "select mm.title_poster_path, m.title,m.movie_id from movie_meta as mm, movie as m where m.movie_id = mm.movie_id and m.movie_id= '".$item."'");
         $row = mysqli_fetch_assoc($result);
+        
         ?>
         <a href="movie.php?id=<?php echo $row['movie_id']?>"><img class="card-img-top viewed-img" src="<?php echo $row['title_poster_path']?>" alt="<?php echo $row['title']?>" title="<?php echo $row['title']?>"></a>
         <?php

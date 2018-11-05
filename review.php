@@ -25,7 +25,7 @@ else if($_POST['action']=="Post")
   $sql = $sql.$_POST['user_id'];
   $sql = $sql." ,'".$_POST['movie_id']."'";
   $sql = $sql." ,".$_POST['rating'];
-  $sql = $sql." ,'".$_POST['review']."'";
+  $sql = $sql." ,'".mysqli_real_escape_string($con, $_POST['review'])."'";
   $sql = $sql." ,'".$dateFormat."')";
   //echo $sql;
   mysqli_query($con, $sql);

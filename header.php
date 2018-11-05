@@ -1,10 +1,10 @@
 <?php
 session_start();
 //$_SESSION['user_id'] = '111';
-	
+
 if(isset($_COOKIE["user"]))
 	$_SESSION["user_id"] = $_COOKIE["user"];
-	
+
 $_SESSION['url']="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 define('DB_SERVER', 'localhost');
 define('DB_USERNAME', 'root');
@@ -62,7 +62,9 @@ $con = mysqli_connect(DB_SERVER,DB_USERNAME,DB_PASSWORD,DB_DATABASE);
             <option>Drama</option>
             <option>Fantasy</option>
             <option>Horror</option>
-
+						<option>Mystery</option>
+						<option>Sci-Fi</option>
+						<option>Thriller</option>
           </select>
           <input type="submit" class="btn btn-dark" value="Search"/>
 
