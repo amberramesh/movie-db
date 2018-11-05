@@ -5,12 +5,12 @@
   if (isset($_SESSION['user_id']))
   {
     ?>
-    <h5 class="footer-heading">You Recently Viewed</h5>
+
     <?php $num = 8;  //number of cards to display
     $cookie_name = $_SESSION['user_id']."_HISTORY";
-    if(!isset($_COOKIE[$cookie_name]))
-    echo '<h5>You view history is empty.</h5>';
-    else {
+    if(isset($_COOKIE[$cookie_name]))
+    {
+      echo '<h5 class="footer-heading">Recently Viewed</h5>';
       $viewed = explode(",",$_COOKIE[$cookie_name]);
 
       foreach($viewed as $item)
