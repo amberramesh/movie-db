@@ -43,8 +43,9 @@ textarea
 
 .rating
 {
-  display: inline;
-
+  display: block;
+  padding-top: 10px;
+  margin-bottom: 10px;
 }
 
 .delete{

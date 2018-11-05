@@ -1,22 +1,26 @@
-<?php 
-	session_start(); 
+<?php
+$str = "";
+	session_start();
 	if(!isset($_SESSION["user_id"])) {
 		header("Location: signin.php");
 		die();
 	}
 	require "config/dbconfig.php";
-	
+
 	$conn =  new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
 	if ($conn->connect_error)
-		die("Connection failed: " . $conn->connect_error); 
-	
+		die("Connection failed: " . $conn->connect_error);
+
 	$user = array();
-	
-	$user["user_id"] = $_SESSION["user_id"];
-	
+
+	if(isset($_GET['user_id']))
+		$user["user_id"] = $_GET['user_id'];
+	else
+		$user["user_id"] = $_SESSION["user_id"];
+
 	$userSql = "SELECT * FROM user WHERE user_id = ".$user["user_id"];
 	$userResult = mysqli_query($conn, $userSql);
-								
+
 	if($userResult) {
 		$row = $userResult->fetch_assoc();
 		$user["fname"] = $row["fname"];
@@ -25,22 +29,22 @@
 		$user["country"] = $row["country"];
 		$user["email"] = $row["email"];
 		$password = $row["password"];
-		mysqli_free_result($userResult);	
+		mysqli_free_result($userResult);
 	}
-	
-	if(isset($_POST["session"])) {
+
+	if(isset($_POST["session"]) && !isset($_GET['user_id'])) {
 		echo json_encode($user);
 		die();
 	}
-	
-	if(isset($_POST["password"])) {
+
+	if(isset($_POST["password"]) && !isset($_GET['user_id'])) {
 		if($_POST["password"] === $password)
 			echo "Valid";
 		else
 			echo "This does not match your current password.";
 		die();
 	}
-	
+
 ?>
 <html>
 	<head lang="en">
@@ -60,8 +64,11 @@
 				<div class="row" id="siteLogo">
 					<h1><a id="siteLogoName" href="index.php">MovieDB</a></h1>
 				</div>
-				
-				<?php if(isset($_GET["status"]) && $_GET["status"] == "success"): ?>
+
+				<?php if(!isset($_GET['user_id'])){
+
+
+				if(isset($_GET["status"]) && $_GET["status"] == "success"): ?>
 				<div id="successAlert" class="row">
 					<div class="alert alert-success col" role="alert">
 						<h4 class="alert-heading">Success!</h4>
@@ -69,7 +76,7 @@
 					</div>
 				</div>
 				<?php endif; ?>
-				
+
 				<?php if(isset($_GET["status"]) && $_GET["status"] == "failure"): ?>
 				<div id="failureAlert" class="row">
 					<div class="alert alert-danger col" role="alert">
@@ -77,12 +84,15 @@
 						<p>Unable to update details at the moment.</p>
 					</div>
 				</div>
-				<?php endif; ?>
-				
+			<?php endif;
+		if(!isset($_GET["user_id"]))
+		$str = "My";
+	else $str = "User"; }?>
+
 				<div class="row">
 					<div class="col-md-4">
 						<div>
-							<h2>My Account</h2>
+							<h2><?php echo $str?> Account</h2>
 						</div>
 						<div id="accordion">
 						  <div class="card">
@@ -93,18 +103,21 @@
 								</button>
 							  </h5>
 							</div>
-							
+
 							<!-- PHP stuff from here -->
 							<div id="personalDetails" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
 							  <div class="card-body">
 								<h4><?php echo $user["fname"]." ".$user["lname"]; ?></h4>
 								<h6><?php echo $user["gender"]; ?></h6>
 								<h6>Country: <?php echo $user["country"]; ?></h6>
+								<?php if(!isset($_GET["user_id"])): ?>
 								<h6>E-mail: <?php echo $user["email"]; ?></h6>
+								<?php endif; ?>
 							  </div>
 							</div>
 						  </div>
-						  
+							<?php if(!isset($_GET['user_id']))
+							{?>
 						  <div class="card">
 							<div class="card-header" id="headingTwo">
 							  <h5 class="mb-0">
@@ -151,12 +164,13 @@
 								<div class="buttonBox">
 									<button type="submit" class="btn-block red-button">Update Details</button>
 								</div>
-							  </form>	
+							  </form>
 							  </div>
 							</div>
 						  </div>
+
 						  <!-- END OF PHP -->
-						  
+
 						  <div class="card">
 							<div class="card-header" id="headingThree">
 							  <h5 class="mb-0">
@@ -187,6 +201,7 @@
 							  </div>
 							</div>
 						  </div>
+
 						  <div class="card">
 							<div class="card-header" id="logoutHeader">
 							  <h5 class="mb-0">
@@ -196,33 +211,41 @@
 							  </h5>
 							</div>
 						  </div>
+							<?php
+						}
+						if(!isset($_GET["user_id"])	)
+						$str = "My";
+					else $str = "User";
+					?>
 						</div>
 					</div>
 					<div class="col-md-8">
 						<div>
-							<h2>My Reviews</h2>
+							<h2><?php echo $str?> Reviews</h2>
 						</div>
 						<div class="container" id="reviewContainer">
-						
+
 						<!-- Using PHP to fetch reviews into container -->
-						
-						<?php 
-						
+
+						<?php
+
 						$reviewSql = "SELECT * FROM v_user_reviews WHERE user_id = ".$user["user_id"];
 						$reviewResult = mysqli_query($conn, $reviewSql);
-						
+						if(!isset($_GET["user_id"])	)
+						$str = "You have";
+						else $str = "User has";
 						if($reviewResult) {
-							
+
 							if($reviewResult->num_rows === 0) { ?>
-							
+
 							<div class="card">
 								<div class="card-body">
-									<h6><center>You have not written any reviews yet.</center></h6>
+									<h6><center><?php echo $str?> not written any reviews yet.</center></h6>
 								</div>
 							</div>
-								
+
 							<?php }
-							
+
 							while($row = $reviewResult->fetch_assoc()) {
 								$movie_id = $row["movie_id"];
 								$title = $row["title"];
@@ -230,7 +253,7 @@
 								$rating = $row["rating"];
 								$review = $row["review"];
 								//echo $movie_id."<br>".$title."<br>".$date."<br>".$rating."<br>".$review; ?>
-								
+
 								<div class="card">
 								  <div class="card-header">
 								    <div class="row">
@@ -248,12 +271,12 @@
 								  </div>
 								</div>
 								<hr/>
-								
+
 								<?php
 							}
 							mysqli_free_result($reviewResult);
 						} ?>
-							
+
 						<!-- END oF PHP -->
 						</div>
 					</div>

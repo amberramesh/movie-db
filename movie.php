@@ -189,14 +189,18 @@
             $rater_name = mysqli_fetch_assoc($user_row)['fname'];
             if($uname==0)
               echo "<b>Anonymous</b>";
-            else
-              echo "<b>".$rater_name."</b>";;
+            else {
+              echo '<b><a href="account.php';
+			  if(isset($_SESSION["user_id"]) && $_SESSION['user_id'] != $uname)
+				echo '?user_id='.$uname;
+			  echo '">'.$rater_name.'</a></b>';
+			}
 
             ?>
           </h6>
           <p>rated this <h3 class = "rating"><?php echo $row['rating']; ?></h3></p>
           <p>
-            <?php echo '(',$row['date'],')'; ?>
+            <?php echo '(',date("F jS, Y", strtotime($row["date"])),')'; ?>
 
           <?php if(isset($_SESSION['user_id']) && $row['user_id'] == $_SESSION['user_id'] ){
             ?>
