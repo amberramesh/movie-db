@@ -38,9 +38,6 @@ $(document).ready(function () {
 			this.style.color = "#D80000";
 	});
 	
-	var isChanged = false;
-	
-	
 	$("[type=text]").focus(function() {
 		$(this).next().hide();
 	});
@@ -49,7 +46,7 @@ $(document).ready(function () {
 		$(this).next().show();
 	});
 	
-	validInfo = {fname: 0, lname: 0, email: 0};
+	validInfo = {fname: 1, lname: 1, email: 1};
 	
 	function validate(key, value) {
 		var input = "#"+key;
@@ -75,22 +72,19 @@ $(document).ready(function () {
 		});
 	}
 	
-	$("#fname").change(function() {
+	$("#fname").on('input', function() {
 		validInfo['fname'] = 0;
 		validate("fname", $(this).val());
-		isChanged = true;
 	});
 	
-	$("#lname").change(function() {
+	$("#lname").on('input', function() {
 		validInfo['lname'] = 0;
 		validate("lname", $(this).val());
-		isChanged = true;
 	});
 	
-	$("#email").change(function() {
+	$("#email").on('input', function() {
 		validInfo['email'] = 0;
 		validate("email", $(this).val());
-		isChanged = true;
 	});
 	
 	$("#editInformationForm").submit(function(e) {
@@ -104,20 +98,17 @@ $(document).ready(function () {
 		if(validInfo['email'] === 0)
 			validate("email", $("#email").val());
 		
-		if(isChanged) {
-			isValid = true;
-			$.each(validInfo, function(key, value) {
-				if(value === 0) {
-					isValid = false;
-				}
-			});
-			
-			if(!isValid) {
-				e.preventDefault();
-				return;
+		isValid = true;
+		$.each(validInfo, function(key, value) {
+			if(value === 0) {
+				isValid = false;
 			}
+		});
+			
+		if(!isValid) {
+			e.preventDefault();
+			return;
 		}
-		
 	});
 	
 	validPassword = {currPwd: 0, newPwd: 0};
@@ -178,18 +169,18 @@ $(document).ready(function () {
 		});
 	}
 	
-	$("#currPwd").change(function() {
+	$("#currPwd").on('input', function() {
 		validPassword['currPwd'] = 0;
 		checkPassword($("#currPwd").val());
 	});
 	
-	$("#pwd").change(function() {
+	$("#pwd").on('input', function() {
 		validPassword['newPwd'] = 0;
 		if($("#chkPwd").val() != "")
 			validatePassword($(this).val(), $("#chkPwd").val());
 	});
 	
-	$("#chkPwd").change(function() {
+	$("#chkPwd").on('input', function() {
 		validPassword['newPwd'] = 0;
 		if($("#pwd").val() != "")
 			validatePassword($("#pwd").val(), $(this).val());

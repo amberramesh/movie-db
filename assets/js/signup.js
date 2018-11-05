@@ -68,12 +68,12 @@ $(document).ready(function() {
 		}		
 	}
 	
-	$("#fname").change(function() {
+	$("#fname").on('input', function() {
 		validForm['fname'] = 0;
 		validate("fname", $(this).val());
 	});
 	
-	$("#lname").change(function() {
+	$("#lname").on('input', function() {
 		validForm['lname'] = 0;
 		validate("lname", $(this).val());
 	});
@@ -84,18 +84,18 @@ $(document).ready(function() {
 	});
 	
 	
-	$("#email").change(function() {
+	$("#email").on('input', function() {
 		validForm['email'] = 0;
 		validate("email", $(this).val());
 	});
 	
-	$("#pwd").change(function() {
+	$("#pwd").on('input', function() {
 		validForm['pwd'] = 0;
 		if($("#chkpwd").val() != "")
 			validatePassword($(this).val(), $("#chkpwd").val());
 	});
 	
-	$("#chkpwd").change(function() {
+	$("#chkpwd").on('input', function() {
 		validForm['pwd'] = 0;
 		if($("#pwd").val() != "")
 			validatePassword($("#pwd").val(), $(this).val());
