@@ -50,7 +50,7 @@
           echo '<br />';
         }
         ?>
-        <h2>New Releases</h2>
+        <h2>Recent Releases</h2>
         <?php
         $date =  strtotime(date("Y-m-d"));
         $query = "SELECT m.movie_id,m.title, m.release_date, m.avg_rating, mm.title_poster_path FROM movie as m, movie_meta as mm";

@@ -60,14 +60,20 @@ $con = mysqli_connect(DB_SERVER,DB_USERNAME,DB_PASSWORD,DB_DATABASE);
 
 
 		</div>
-		<div class="container">
+		<div class="container form-container">
 
 			<form class="form-inline" method="get" action="search.php">
-				<div class="row justify-content-center">
-						<input type="text"  class="form-control" placeholder="Search for movie " name="title">
+				<div class = "row justify-content-center">
 
-						<label>&nbsp &nbsp in Genre: &nbsp &nbsp</label>
-						<select class="form-control" name="genre">
+				<div class="col-md-auto">
+					<label>&nbsp</label>
+						<input type="text"  class="form-control" placeholder="Search for movie " name="title">
+					</div>
+					<div class="col-md-auto ">
+
+							 <label>&nbsp &nbsp in Genre: </label>
+
+							<select class="form-control" name="genre">
 							<option selected>All</option>
 							<option>Action</option>
 							<option>Adventure</option>
@@ -82,9 +88,33 @@ $con = mysqli_connect(DB_SERVER,DB_USERNAME,DB_PASSWORD,DB_DATABASE);
 							<option>Sci-Fi</option>
 							<option>Thriller</option>
 						</select>
-						<input type="submit" class="btn btn-dark" value="Search"/>
+					</div>
+					<div class="col-md-auto">
+							<label>&nbsp &nbsp Sort By:</label>
 
+						<select class="form-control" name="sort">
+							<option selected>Popularity</option>
+							<option>Title</option>
+							<option>Release Date</option>
+						</select>
+					</div>
+					<div class="col-md-auto">
+						<label>&nbsp &nbsp Look In:</label>
+
+					<select class="form-control" name="look_in">
+						<option selected>All</option>
+						<option>Coming Soon</option>
+						<option>New Releases</option>
+						<option >Modern Picks</option>
+						<option >Classics</option>
+					</select>
 				</div>
+				<div class="col-md-auto">
+					<label>&nbsp</label>
+						<input type="submit" class="btn btn-dark" value="Search"/>
+					</div>
+					</div>
+
 			</form>
 		</div>
 	</div>
@@ -94,4 +124,10 @@ $con = mysqli_connect(DB_SERVER,DB_USERNAME,DB_PASSWORD,DB_DATABASE);
 	<div class="jumbotron jumbotron-fluid">
 
 	</div>
+	<script>
+		function toggleFilters()
+		{
+
+		}
+	</script>
 </header>

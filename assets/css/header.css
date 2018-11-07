@@ -10,7 +10,6 @@
   letter-spacing: 0.2rem;
   margin-top: -10px;
   margin-bottom: 8px;
-
 }
 
 header .jumbotron
@@ -34,25 +33,26 @@ header .lead{
 }
 
 form{
-  margin: 0 auto;
+
   padding-bottom: 5px;
   margin-top: 5px;
-  width: 50%;
-
-
+  width:80%;
+  margin: 0 auto;
 }
-.form-inline
+.form-inline label
 {
-  display: block;
+  justify-content: left;
 }
 
 
 .home-link{
-
   color: white;
-
 }
 .home-link:hover{
   text-decoration: none;
   color:white;
+}
+
+.filters{
+  padding-top: 50px;
 }
