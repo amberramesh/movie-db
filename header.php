@@ -64,13 +64,9 @@ $con = mysqli_connect(DB_SERVER,DB_USERNAME,DB_PASSWORD,DB_DATABASE);
 
 			<form class="form-inline" method="get" action="search.php">
 				<div class="row justify-content-center">
-
 						<input type="text"  class="form-control" placeholder="Search for movie " name="title">
 
-
 						<label>&nbsp &nbsp in Genre: &nbsp &nbsp</label>
-
-
 						<select class="form-control" name="genre">
 							<option selected>All</option>
 							<option>Action</option>
@@ -86,8 +82,6 @@ $con = mysqli_connect(DB_SERVER,DB_USERNAME,DB_PASSWORD,DB_DATABASE);
 							<option>Sci-Fi</option>
 							<option>Thriller</option>
 						</select>
-
-
 						<input type="submit" class="btn btn-dark" value="Search"/>
 
 				</div>

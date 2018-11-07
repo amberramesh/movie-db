@@ -38,6 +38,12 @@ form{
   padding-bottom: 5px;
   margin-top: 5px;
   width: 50%;
+
+
+}
+.form-inline
+{
+  display: block;
 }
 
 
