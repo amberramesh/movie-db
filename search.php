@@ -72,7 +72,7 @@ $look_in = $_GET['look_in'];
 
         $result = mysqli_query($con, $query);
 
-        if($result == false)
+        if(mysqli_num_rows($result)== 0 || $result == false)
         echo '<h1>No results found :-(</h1>';
         else {
           while($row = mysqli_fetch_assoc($result)){
