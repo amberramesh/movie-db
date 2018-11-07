@@ -27,7 +27,7 @@
           for($cards= 0; $cards < min(3, $num_cards); $cards++){
             $row = mysqli_fetch_assoc($result);
             ?>
-            <div class="col-md-4" >
+            <div class="col-md-4 justify-content-center" >
               <div class="card" >
                 <div class="rating-overlay">
                   <h3>Coming Soon</h3>
@@ -97,11 +97,12 @@
         }
         ?>
 
-        <h2>Top Picks</h2>
+        <h2>Modern Picks</h2>
         <?php
         $date =  strtotime(date("Y-m-d"));
+        $min_date =  strtotime("2001/12/30");
         $query = "SELECT m.movie_id,m.title, m.release_date, m.avg_rating, mm.title_poster_path FROM movie as m, movie_meta as mm";
-        $query = $query." where m.movie_id = mm.movie_id and unix_timestamp(release_date) <= ".$date." order by avg_rating desc limit 5";
+        $query = $query." where m.movie_id = mm.movie_id and unix_timestamp(release_date) <= ".$date." and unix_timestamp(release_date) >=".$min_date." order by avg_rating desc limit 5";
         $result = mysqli_query($con, $query);
 
 

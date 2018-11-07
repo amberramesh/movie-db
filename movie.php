@@ -229,7 +229,7 @@ function manage_cookies()
             </div>
             <div class = "col-md-9">
               <p>
-                <?php echo $row['review']; ?>
+                <?php echo nl2br($row['review']); ?>
               </p>
             </div>
 

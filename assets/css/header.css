@@ -10,6 +10,7 @@
   letter-spacing: 0.2rem;
   margin-top: -10px;
   margin-bottom: 8px;
+
 }
 
 header .jumbotron
@@ -17,7 +18,7 @@ header .jumbotron
   background-color: #171819;
   color: orange;
   color: white;
-  padding: 0px 5px 5px 5px;
+  padding: 0px 0px 5px 10px;
   margin: 0;
 }
 header ul
@@ -34,14 +35,10 @@ header .lead{
 
 form{
   margin: 0 auto;
-  max-width: 50%;
-  text-align: center;
-
   padding-bottom: 5px;
   margin-top: 5px;
+  width: 50%;
 }
-
-
 
 
 .home-link{
