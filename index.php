@@ -12,7 +12,7 @@
   <div class="container main-container">
     <?php include 'header.php'; ?>
     <main>
-      <div class="container">
+      <div class="container site-main-content">
         <h2>Coming Soon...</h2>
         <?php
         $date =  strtotime(date("Y-m-d"));

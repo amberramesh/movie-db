@@ -1,6 +1,6 @@
 <?php
-$title = $_GET['title'];
-$title = preg_replace("/[^a-zA-Z0-9 ]+/", "", $title);
+$input_title = $_GET['title'];
+$title = preg_replace("/[^a-zA-Z0-9 ]+/", "", $input_title);
 $genre = $_GET['genre'];
 $sort_by = $_GET['sort'];
 $look_in = $_GET['look_in'];
@@ -34,7 +34,7 @@ $look_in = $_GET['look_in'];
         if($genre != "All")
           $query = $query." and LOWER(m.genre) like LOWER('%".$genre."%') ";
 
-        //look_in filter
+
         if($look_in=="All")
           ;
         else if($look_in=="Coming Soon")
@@ -60,7 +60,7 @@ $look_in = $_GET['look_in'];
 
           $query = $query."and unix_timestamp(release_date) <".$date. " and avg_rating>7.5 ";
         }
-        //sort by stream_get_filters
+
         if($sort_by=="Popularity")
           $query = $query." order by avg_rating desc";
         else if($sort_by=="Title")
@@ -68,7 +68,7 @@ $look_in = $_GET['look_in'];
         else if($sort_by=="Release Date")
           $query = $query." order by release_date desc";
 
-        //sort
+
 
         $result = mysqli_query($con, $query);
 

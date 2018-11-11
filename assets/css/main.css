@@ -22,6 +22,11 @@ html, body
 
 }
 
+.site-main-content
+{
+  padding: 30px;
+}
+
 main{
   min-height:100vh;
 

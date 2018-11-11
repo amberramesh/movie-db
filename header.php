@@ -12,6 +12,13 @@ define('DB_PASSWORD', 'root');
 define('DB_DATABASE', 'moviedb');
 $con = mysqli_connect(DB_SERVER,DB_USERNAME,DB_PASSWORD,DB_DATABASE);
 
+
+if(isset($_GET['title']))
+{
+	$title = $_GET['title'];
+}
+else $title = "";
+
 ?>
 <header>
 	<div class="jumbotron jumbotron-fluid ">
@@ -67,13 +74,13 @@ $con = mysqli_connect(DB_SERVER,DB_USERNAME,DB_PASSWORD,DB_DATABASE);
 
 				<div class="col-md-auto">
 					<label>&nbsp</label>
-						<input type="text"  class="form-control" placeholder="Search for movie " name="title">
+						<input type="text"  class="form-control" placeholder="Search for movie " name="title" value="<?php echo $title?>">
 					</div>
 					<div class="col-md-auto ">
 
 							 <label>&nbsp &nbsp in Genre: </label>
 
-							<select class="form-control" name="genre">
+							<select class="form-control" name="genre" id="genre-select">
 							<option selected>All</option>
 							<option>Action</option>
 							<option>Adventure</option>
@@ -92,7 +99,7 @@ $con = mysqli_connect(DB_SERVER,DB_USERNAME,DB_PASSWORD,DB_DATABASE);
 					<div class="col-md-auto">
 							<label>&nbsp &nbsp Sort By:</label>
 
-						<select class="form-control" name="sort">
+						<select class="form-control" name="sort" id="sort-select">
 							<option selected>Popularity</option>
 							<option>Title</option>
 							<option>Release Date</option>
@@ -101,7 +108,7 @@ $con = mysqli_connect(DB_SERVER,DB_USERNAME,DB_PASSWORD,DB_DATABASE);
 					<div class="col-md-auto">
 						<label>&nbsp &nbsp Look In:</label>
 
-					<select class="form-control" name="look_in">
+					<select class="form-control" name="look_in" id="look-select">
 						<option selected>All</option>
 						<option>Coming Soon</option>
 						<option>New Releases</option>
@@ -125,9 +132,17 @@ $con = mysqli_connect(DB_SERVER,DB_USERNAME,DB_PASSWORD,DB_DATABASE);
 
 	</div>
 	<script>
-		function toggleFilters()
-		{
+		var url = new URL(window.location.href);
+		var genre =	url.searchParams.get("genre");
+		var sort = url.searchParams.get("sort");
+		var look_in = url.searchParams.get("look_in");
 
-		}
+		if(genre != null)
+			document.getElementById("genre-select").value = genre;
+		if(sort != null)
+			document.getElementById("sort-select").value = sort;
+		if(look_in != null)
+			document.getElementById("look-select").value = look_in;
+
 	</script>
 </header>
